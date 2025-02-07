@@ -13,6 +13,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Delete huge unnecessary tools folder
+        run: rm -rf /opt/hostedtoolcache
+
       - name: Checkout Repository
         uses: actions/checkout@v4
 
@@ -28,7 +31,7 @@ jobs:
       - name: Extract Image Name from Repository
         id: repo_name
         run: echo "IMAGE_NAME=ghcr.io/${{ github.repository }}" >> $GITHUB_ENV
-      
+
       - name: Set Environment Variables
         run: cp sample.env .env
 
